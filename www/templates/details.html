@@ -1,0 +1,66 @@
+<ion-view  title="{{entry.display_name}}">
+    <ion-nav-buttons side="right">
+      <i  class="icon ion-android-share-alt center-icon medium_white" ng-click="shareLocation(entry.id)"></i>
+    </ion-nav-buttons>
+
+      <ion-content>
+          <ion-list>
+                <ion-item>
+                    <!--
+                    <div class="item-content item-icon-right">
+                        <p class="details-address">{{entry.display_address||entry.formatted_address}}</p>
+                    </div>
+                    -->
+                    <div class="card">
+                      <div class="row no-padding">
+                        <div class="col col-50">
+                          <button class="button icon-left ion-ios-copy button-positive" ng-click="copyToClipboard(entry.id)"> Copy Location</button>
+                        </div>
+                        <div class="col col-50">
+                          <button class="button icon-left ion-model-s button-positive" ng-click="addAndOpenSygic(entry.id, entry.latitude, entry.longitude)"> Open Sygic</button>
+                        </div>
+                      </div>
+                      <div class="item item-text-wrap no-padding">
+                        <div class="bar bar-header item-input-inset">
+                          <label class="item-input-wrapper">
+                            <input type="text" placeholder="New Place Name" ng-model="entry.display_name">
+                          </label>
+                        </div>
+                        <div class="row">
+                          <div class="col col-33"><b>Latitude</b></div>
+                          <div class="col">{{entry.latitude}}</div>
+                        </div>
+                        <div class="row">
+                          <div class="col col-33"><b>Longitude</b></div>
+                          <div class="col ">{{entry.longitude}}</div>
+                        </div>
+                        <div class="row" ng-if="editAddress">
+                          <div class="col col-90" style="width:200%">
+                            <textarea placeholder="Enter an address" ng-model="entry.formatted_address" ng-Required="true" name="formatted_address" ></textarea>
+                          </div>
+                        </div>
+                        <div class="row" ng-if="!editAddress">
+                          <div class="col col-90" style="width:200%">
+                            <p class="details-address">{{entry.display_address||entry.formatted_address}}</p>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="item item-divider item-icon-left no-padding" ng-if="add">
+                        <button class="button button-block button-positive no-padding" ng-click="add(entry.place, entry.display_name, entry.formatted_address, entry.latitude, entry.longitude)">Add to List</button>
+                      </div>
+                    </div>
+                    <div class="item-content item-icon-right" ng-if="(detailsVars||{}).forSearchOnly">
+                        <p class="details-address"  ng-click="addressToClip(entry.display_address||entry.formatted_address)">{{entry.display_address||entry.formatted_address}}</p>
+                    </div>
+                    <div class="item range range-positive noborder">
+                      <i class="icon ion-minus-circled" ng-click="zoomOut()"></i>
+                      <input type="range" min="{{zoomMin}}" max="{{zoomMax}}" ng-model="entry.zoomSize">
+                      <i class="icon ion-plus-circled" ng-click="zoomIn()"></i>
+                    </div>
+                    <div>
+                      <img  class="col col-center" src="http://maps.google.com/maps/api/staticmap?markers=color:blue|label:o|{{entry.latitude}},{{entry.longitude}}&zoom={{entry.zoomSize}}&size=240x320&scale=1"></img>
+                    </div>
+                </ion-item>
+          </ion-list>
+      </ion-content>
+</ion-view>

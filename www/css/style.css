@@ -1,0 +1,102 @@
+.vrange{
+  -ms-transform: rotate(-90deg); /* IE 9 */
+  -webkit-transform: rotate(-90deg); /* Chrome, Safari, Opera */
+  transform: rotate(-90deg);
+  i.icon{
+    -ms-transform: rotate(90deg); /* IE 9 */
+    -webkit-transform: rotate(90deg); /* Chrome, Safari, Opera */
+    transform: rotate(90deg);
+  }
+}
+
+.noborder {
+  border-style:none;
+}
+
+.item .top-right-icon {
+  position: absolute;
+  top: 24px;
+  right: 56px;
+  font-size: 24px;
+}
+
+.item .details-address {
+  white-space: normal;
+}
+
+.item .loc-details-address  {
+  color : #A6ACF0;
+  font-size: 12px;
+}
+
+.some_padding {
+  padding : 5px;
+}
+
+.href_no_ul {
+  text-decoration: none;
+}
+
+.positive_color {
+  color: blue;
+}
+
+.no-padding {
+    padding: 0px !important;
+}
+
+#copy-clipboard-btn {
+    top: -4px;
+}
+
+.center-icon {
+    margin: auto 25px;
+}
+
+.medium.icon {
+  font-size: 32px;
+}
+
+.medium_orange.icon {
+  font-size: 32px;
+  color:orange;
+}
+
+.medium_white.icon {
+  font-size: 32px;
+  color:white;
+}
+
+
+.medium_red.icon {
+  font-size: 32px;
+  color:red;
+}
+
+.col textarea {
+  width  : 100%;
+  border-bottom: 2px;
+  border-top: 2px;
+  border-style: solid;
+  border-color: black;
+}
+
+.item-input-inset .ion-search {
+  margin-left : -30px;
+  color: blue;
+}
+
+.blink {
+  animation: blink 1s steps(5, start) infinite;
+  -webkit-animation: blink 1s steps(5, start) infinite;
+}
+@keyframes blink {
+  to {
+    visibility: hidden;
+  }
+}
+@-webkit-keyframes blink {
+  to {
+    visibility: hidden;
+  }
+}

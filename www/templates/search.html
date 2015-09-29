@@ -1,0 +1,26 @@
+<ion-view  ng-controller="SearchCtrl" title="{{searchForm.searchFor?searchForm.searchFor:'Search'}}">
+  <ion-nav-buttons side="right">
+      <i class="icon ion-alert assertive center-icon medium_red blink" ng-if="errorAlert"></i>
+  </ion-nav-buttons>
+  <ion-content>
+    <form ng-submit="search(true)">
+      <ion-list>
+        <ion-item class="bar bar-header item-input-inset">
+          <label class="item-input-wrapper">
+            <input type="text" placeholder="Search location" ng-model="searchForm.searchFor" ng-change="search()">
+          </label>
+          <button class="button button-icon icon ion-search"  ng-click="search(true)" ng-disabled="!searchForm.searchFor || searchForm.searchFor === ''" type="submit"></button>
+        </ion-item>
+      </ion-list>
+        <ion-list>
+            <ion-item ng-href="#/search/details/{{entry.id}}" class="item-remove-animate item-icon-right" ng-repeat="entry in searchedEntries">
+                <b>{{entry.display_name}}</b><i ng-class="{'some_padding ion-card':entry.stype_is_address, 'some_padding ion-location':entry.stype_is_place}"></i></p>
+                <p class="details-address">{{entry.display_address||entry.formatted_address}}<div class="loc-details-address"><b>Lat:</b>{{entry.latitude}}, <b>Lng:</b>{{entry.longitude}}</div></p>
+                <i class="icon ion-arrow-right-b"></i>
+                <ion-option-button class="button-balanced icon-left ion-plus-circled" ng-click="add(entry.id)">Add</ion-option-button>
+                <ion-option-button class="button-positive icon-left ion-model-s" ng-click="openSygic(entry.latitude, entry.longitude)">Sygic</ion-option-button>
+            </ion-item>
+        </ion-list>
+    </form>
+  </ion-content>
+</ion-view>

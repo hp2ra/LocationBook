@@ -1,0 +1,18 @@
+<ion-view  title="Home" ng-controller="SavedListCtrl">
+      <ion-nav-buttons side="right">
+        <i class="icon ion-shuffle center-icon" ng-click="toggleReorder()" ng-if="recentEntries.length"></i>
+      </ion-nav-buttons>
+
+      <ion-content>
+          <ion-list show-reorder="reordering">
+              <ion-item ng-href="#/list/details/{{entry.id}}" class="item-remove-animate item-icon-right" ng-repeat="entry in recentEntries">
+                  <b>{{entry.display_name}}</b>
+                  <p class="details-address">{{entry.formatted_address}}</p>
+                  <i class="icon ion-arrow-right-b"></i>
+                  <ion-reorder-button class="ion-drag" on-reorder="move(entry, $fromIndex, $toIndex)"></ion-reorder>
+                  <ion-option-button class="button-assertive icon-left ion-trash-b" ng-click="remove(entry.id)">Remove</ion-option-button>
+                  <ion-option-button class="button-positive  icon-left ion-model-s" ng-click="openSygic(entry.latitude, entry.longitude)">Sygic</ion-option-button>
+              </ion-item>
+          </ion-list>
+      </ion-content>
+</ion-view>

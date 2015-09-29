@@ -1,0 +1,55 @@
+<ion-view title="Options" ng-controller="SettingsCtrl" >
+  <ion-nav-buttons side="right">
+    <div class="buttons">
+      <button class="button no-animation button-icon icon ion-thumbsdown"  ng-click="cancelSettings()" ng-if="settingsIsDirty"></button>
+      <button class="button no-animation button-icon icon ion-thumbsup" ng-click="saveSettings()" ng-if="settingsIsDirty"></button>
+    </div>
+  </ion-nav-buttons>
+  <ion-content>
+    <ion-list>
+      <ion-item class="item-divider item-icon-right">
+         <label>Where am i ?</label>
+         <i class="icon ion-earth" ng-click="getCurrentLocation()"></i>
+      </ion-item>
+      <ion-item class="item-divider">
+        <b>GPS Settings</b>
+      </ion-item>
+      <ion-toggle ng-model="appConfig.gps.enableHighAccuracy" ng-change="flagsChange({gps_enableHighAccuracy:appConfig.gps.enableHighAccuracy})">GPS Enable Accuracy</ion-toggle>
+      <ion-item class="bar bar-header item item-input-inset">
+          <label class="input-label some_padding">Timeout (ms) </label>
+          <input class="item item-input item-input-wrapper" type="number" step="1000" ng-model="appConfig.gps.timeout" ng-change="flagsChange({gps_timeout:appConfig.gps.timeout})">
+      </ion-item>
+      <ion-item class="item-divider item-icon-right">
+        <b>Google API keys</b>
+        <i class="icon ion-shuffle" ng-click="toggleReorder()"></i>
+      </ion-item>
+      <ion-toggle ng-model="appConfig.onSearchRemoveInvalidAPIKeys" ng-change="flagsChange({onSearchRemoveInvalidAPIKeys:appConfig.onSearchRemoveInvalidAPIKeys})">Remove Invalid Keys</ion-toggle>
+      <ion-item class="bar bar-header item-input-inset">
+        <label class="item-input-wrapper">
+          <input type="text" placeholder="Enter New API key" ng-model="appConfig.newAPIKey">
+        </label>
+        <button class="button button-icon icon ion-ios-plus footer-btn" ng-click="addAPIKey(appConfig.newAPIKey)"  ng-disabled="!appConfig.newAPIKey || appConfig.newAPIKey === ''"></button>
+      </ion-item>
+    </ion-list>
+    <ion-list  show-reorder="reordering">
+      <ion-item class="item-remove-animate item-icon-right" ng-repeat="apikey in appConfig.apikeys">
+          <p style="text-overflow:inherit;overflow-x:auto; overflow-y:auto;">{{apikey}}</p>
+          <i class="icon ion-arrow-right-b"></i>
+          <ion-reorder-button class="ion-drag" on-reorder="move(apikey, $fromIndex, $toIndex)"></ion-reorder>
+          <ion-option-button class="button-assertive icon-left ion-trash-b" ng-click="remove(apikey)">Remove</ion-option-button>
+      </ion-item>
+    </ion-list>
+    <!--
+    <ion-list>
+      <ion-item class="item-divider item-icon-right">
+        <b>Misc:Blank them to reset</b>
+      </ion-item>
+      <ion-item class="bar bar-header item-input-inset">
+        <label class="item-input-wrapper">
+          <input type="text" placeholder="Blank will reset Sygic URL" ng-model="appConfig.sygicURLScheme" ng-change="sygicURLSchemeChange(appConfig.sygicURLScheme)" >
+        </label>
+      </ion-item>
+    </ion-list>
+    -->
+  </ion-content>
+</ion-view>
