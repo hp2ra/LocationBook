@@ -14,10 +14,25 @@
       <ion-item class="item-divider">
         <b>GPS Settings</b>
       </ion-item>
-      <ion-toggle ng-model="appConfig.gps.enableHighAccuracy" ng-change="flagsChange({gps_enableHighAccuracy:appConfig.gps.enableHighAccuracy})">GPS Enable Accuracy</ion-toggle>
+      <!-- Highaccuracy should always be set to true-->
+      <!-- <ion-toggle ng-model="appConfig.gps.enableHighAccuracy" ng-change="flagsChange({gps_enableHighAccuracy:appConfig.gps.enableHighAccuracy})">GPS Enable Accuracy</ion-toggle> -->
       <ion-item class="bar bar-header item item-input-inset">
-          <label class="input-label some_padding">Timeout (ms) </label>
-          <input class="item item-input item-input-wrapper" type="number" step="1000" ng-model="appConfig.gps.timeout" ng-change="flagsChange({gps_timeout:appConfig.gps.timeout})">
+          <div class="row">
+            <label class="col input-label some_padding">GPS Timeout (s) </label>
+            <input class="col item item-input item-input-wrapper" type="number" step="2" ng-model="appConfig.gps.timeout" ng-change="flagsChange({gps_timeout:appConfig.gps.timeout})">
+          </div>
+      </ion-item>
+      <ion-item class="bar bar-header item item-input-inset">
+          <div class="row">
+            <label class="col input-label some_padding">Accuracy (meters) </label>
+            <input class="col item item-input item-input-wrapper" type="number" min="10" step="2" ng-model="appConfig.gps.accuracy" ng-change="flagsChange({gps_accuracy:appConfig.gps.accuracy})">
+          </div>
+      </ion-item>
+      <ion-item class="bar bar-header item item-input-inset">
+          <div class="row">
+          <label class="col input-label some_padding">Check Interval (s) </label>
+          <input class="col item item-input item-input-wrapper" type="number" min="2" step="1" ng-model="appConfig.gps.interval" ng-change="flagsChange({gps_interval:appConfig.gps.interval})">
+          </div>
       </ion-item>
       <ion-item class="item-divider item-icon-right">
         <b>Google API keys</b>

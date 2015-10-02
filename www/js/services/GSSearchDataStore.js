@@ -17,8 +17,10 @@
     appData.configData.apikeys=appData.configData.apikeys||[];
     appData.configData.sygicURLScheme= (appData.configData.sygicURLScheme && appData.configData.sygicURLScheme != "" ) ? appData.configData.sygicURLScheme : DefaultSygicURLScheme;
     appData.configData.gps = appData.configData.gps || {};
-    appData.configData.gps.enableHighAccuracy = appData.configData.gps.enableHighAccuracy || false;
-    appData.configData.gps.timeout = appData.configData.gps.timeout || 120000;
+    appData.configData.gps.enableHighAccuracy = true; // Always true
+    appData.configData.gps.timeout = appData.configData.gps.timeout || 300;
+    appData.configData.gps.interval = appData.configData.gps.interval || 5;
+    appData.configData.gps.accuracy = appData.configData.gps.accuracy || 30;
     appData.configData.saveOrigAddress = false; // As google does not permit to store original address. (For testing can be switched to true)
     persist();
 
